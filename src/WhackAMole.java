@@ -15,6 +15,8 @@ JPanel panel = new JPanel();
 JButton mole = new JButton();
 Date timeAtStart;
 	void whack() {	
+		frame = new JFrame();
+		panel = new JPanel();
 		timeAtStart = new Date();
 		System.out.println(timeAtStart.toString());
 		panel.setSize(900,1500);
@@ -50,13 +52,14 @@ Date timeAtStart;
 	public void actionPerformed(ActionEvent nadal) {
 		// TODO Auto-generated method stub
 		if(nadal.getSource() == mole) {
-			speak("You did it");
+			speak("You did it. You are good at something unlike Dhruv Wadhwa and Adwit Aggarwal");
 			frame.dispose();
+		
 			whack();
 			track = track + 1;
 		}
 		else {
-			speak("You dork");
+			speak("You dork just like Adwit and Ohio State and Oklahama and Michigan State and Anthony Barr and Dhruv Wadhwa also known as the annoying and idiot just like Adwit and USC and Ranjiv ");
 		}
 		endGame(timeAtStart, track);
 	}
