@@ -22,12 +22,13 @@ public class SimonSaysRecipe extends KeyAdapter {
  	private int tries = 0;
  	private int simonSays = 0;
  	Date timeAtStart;
+ 	int[] keys = {KeyEvent.VK_R,KeyEvent.VK_N,KeyEvent.VK_K,KeyEvent.VK_A};
  	private  void makeAlbum() {
  // 2. add 4 images which match keyboard keys like this: images.put(new Integer(KeyEvent.VK_UP), "image.jpg");
- 		images.put(new Integer(KeyEvent.VK_A), "/Users/league/Desktop/Level-1-Neel/A keyboard.jpeg");
- 		images.put(new Integer(KeyEvent.VK_N), "/Users/league/Desktop/Level-1-Neel/N keyboard.jpg");
- 		images.put(new Integer(KeyEvent.VK_R), "/Users/league/Desktop/Level-1-Neel/R keyboard.jpeg");
- 		images.put(new Integer(KeyEvent.VK_K), "/Users/league/Desktop/Level-1-Neel/K keyboard.jpeg");
+ 		images.put(new Integer(KeyEvent.VK_K), "Kkeyboard.jpeg");
+ 		images.put(new Integer(KeyEvent.VK_N), "N keyboard.jpg");
+ 		images.put(new Integer(KeyEvent.VK_R), "R keyboard.jpeg");
+ 		images.put(new Integer(KeyEvent.VK_A), "A keyboard.jpeg");
   	
  // 3. Tell the user to "Press the matching key when 'Simon says' otherwise press a different key"
  		JOptionPane.showMessageDialog(null, "Press the matching key with the picture only if simon says. If simon doesn't say, pick a different key.");
@@ -41,15 +42,15 @@ public class SimonSaysRecipe extends KeyAdapter {
     	// 16. make a points variable to track the score. tell the user their score at the end.
     	int points = 0;
     	//17. if the keyCode matches the imageIndex and "Simon says..."  increase their score
-    	if(keyCode == imageIndex && simonSays == 1) {
+    	if(keyCode == keys[imageIndex] && simonSays == 1) {
     		points = points + 1;
     	}
     	//18.   if the keyCode doesn't match the imageIndex and "Simon didn't say..."  increase their score	
-    	if(keyCode != imageIndex && simonSays == 0) {
+    	if(keyCode != keys[imageIndex] && simonSays == 0) {
     		points = points - 1;
     	}
     	//19. Use the speak method to tell the user if they were correct or not
-    	if(keyCode != imageIndex && simonSays == 0 ||keyCode == imageIndex && simonSays == 1 ) {
+    	if(keyCode != keys[imageIndex] && simonSays == 0 ||keyCode == keys[imageIndex] && simonSays == 1 ) {
     		speak("Correct");
     	}
     	//13. increment tries by 1
@@ -81,7 +82,7 @@ public class SimonSaysRecipe extends KeyAdapter {
   	 quizwindow.setSize(500, 500);
      	
     	// 9. add a key listener to the frame
-  	 quizwindow.addKeyListener(null);
+  	 quizwindow.addKeyListener(this);
 	
    	 //10. Use the speak method to either say "Simon says press this key" or "Press this key"
     	//Hint: use the simonSays int and a random number
@@ -96,8 +97,8 @@ public class SimonSaysRecipe extends KeyAdapter {
   	}
 	
 	private Component getNextRandomImage() {
-    	this.imageIndex = new Random().nextInt(4) + 37;
-    	return loadImage(images.get(imageIndex));
+    	this.imageIndex = new Random().nextInt(4);
+    	return loadImage(images.get(keys[imageIndex]));
 	}
 	private JLabel loadImage(String fileName) {
     	URL imageURL = getClass().getResource(fileName);

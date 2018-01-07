@@ -24,13 +24,13 @@ public class SpellingBee {
 	public void stuffForYouToDo() {
 		String word = randomWord();
 		
-				Speak(word);
-		for (int i = 0; ; i++) {
+				
+		for (int i = 0; true; i++) {
 			System.out.println(word);
+			Speak(word);
 			String user = JOptionPane.showInputDialog("Type in the word here spelled correctly");
 			if(user.equalsIgnoreCase(word)) {
 				word = randomWord();
-				Speak(word);
 			}
 			else {
 				System.out.println("You lost");
@@ -44,20 +44,22 @@ public class SpellingBee {
 	public String randomWord() {
 		return words.get(new Random().nextInt(lines));
 	}
+	Voice voice = VoiceManager.getInstance().getVoice("kevin16");
 
 	public SpellingBee() {
+		
 		System.out.println(" /--------------------------------------------\\ ");
 		System.out.println(" | Warning: Some of the words are super hard! | ");
 		System.out.println(" \\--------------------------------------------/ ");
 		try {
 			// Get the amount of lines
-			LineNumberReader lnr = new LineNumberReader(new FileReader(new File("/usr/share/dict/words")));
+			LineNumberReader lnr = new LineNumberReader(new FileReader(new File("words")));
 			lnr.skip(Long.MAX_VALUE);// Skip to the end
 			lines = lnr.getLineNumber();// Get last line number
 			//speakNoWait(lines + " words loaded");
 			System.out.println("Number of words: " + lines);
 			lnr.close();
-			BufferedReader br = new BufferedReader(new FileReader(new File("/usr/share/dict/words")));
+			BufferedReader br = new BufferedReader(new FileReader(new File("words")));
 			for (int i = 0; i < lines; i++) {
 				words.add(br.readLine()); // adds every line to the array
 			}
@@ -73,8 +75,8 @@ public class SpellingBee {
 	}
 
 	/* Don’t change this…. */
-	static void Speak(String words) {
-			Voice voice = VoiceManager.getInstance().getVoice("kevin16");
+	void Speak(String words) {
+		
 				voice.allocate();
 				voice.speak(words);
 				voice.deallocate();
