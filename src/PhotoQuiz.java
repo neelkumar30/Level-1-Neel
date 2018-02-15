@@ -92,8 +92,8 @@ public class PhotoQuiz {
 		}
 		// 8. print "INCORRECT" if the answer is wrong
 		else {
-			System.out.println("INCORRECT! The right answer was 5. You don't know anything so go and learn things.");
-			JOptionPane.showMessageDialog(null,"INCORRECT! The right answer was 5. You don't know anything so go and learn things.");
+			System.out.println("INCORRECT! The right answer was 12. You don't know anything so go and learn things.");
+			JOptionPane.showMessageDialog(null,"INCORRECT! The right answer was 12. You don't know anything so go and learn things.");
 		}
 		
 		// 11. add the second image to the quiz window
